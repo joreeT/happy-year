@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>بطاقة تهنئة السنة الجديدة</title>
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      text-align: center;
+      background-color: #fefaf3; /* بيج فاتح */
+      padding: 30px;
+      direction: rtl;
+    }
+
+    h2 {
+      color: #5e412f;
+    }
+
+    .card {
+      position: relative;
+      display: inline-block;
+      margin-top: 20px;
+    }
+
+    .card img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 15px;
+    }
+
+    .name-box {
+      position: absolute;
+      bottom: 65px;
+      right: 10px;
+      background-color: rgba(94, 65, 47, 0.8); /* بني */
+      color: white;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 18px;
+    }
+
+    input, button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      font-family: inherit;
+    }
+
+    input {
+      border: 1px solid #ccc;
+      width: 200px;
+    }
+
+    button {
+      background-color: #5e412f;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #7b5841;
+    }
+
+    #downloadMsg {
+      color: green;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>🎉 كل عام وأنتم بخير 🎉</h2>
+
+<div class="card" id="card">
+  <img src="pic2.png" alt="بطاقة تهنئة">
+  <div class="name-box" id="nameDisplay">أخوكم حسن تميم</div>
+</div>
+
+<br>
+<input type="text" id="nameInput" placeholder="اكتب اسمك هنا">
+<br>
+<button onclick="updateName()">تحديث الاسم</button>
+<button onclick="downloadCard()">تحميل الصورة</button>
+
+<p id="downloadMsg"></p>
+
+<!-- تحميل مكتبة html2canvas من CDN -->
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+<script>
+  function getNameFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("name");
+  }
+
+  function updateNameDisplay(name) {
+    document.getElementById("nameDisplay").textContent = name || "أخوكم حسن تميم";
+  }
+
+  function updateName() {
+    const inputName = document.getElementById("nameInput").value.trim();
+    if (inputName) {
+      updateNameDisplay(inputName);
+    }
+  }
+
+  function downloadCard() {
+    const card = document.getElementById("card");
+    html2canvas(card).then(canvas => {
+      const link = document.createElement("a");
+      link.download = "بطاقة_عيد_الأضحى.png";
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+      document.getElementById("downloadMsg").textContent = "✅ تم تحميل الصورة!";
+    });
+  }
+
+  // في حالة الاسم كان في الرابط
+  const nameFromURL = getNameFromURL();
+  if (nameFromURL) {
+    updateNameDisplay(nameFromURL);
+    document.getElementById("nameInput").value = nameFromURL;
+  }
+</script>
+
+</body>
+</html>
