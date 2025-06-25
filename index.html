@@ -115,7 +115,7 @@
     const card = document.getElementById("card");
     html2canvas(card).then(canvas => {
       const link = document.createElement("a");
-      link.download = "بطاقة_عيد_الأضحى.png";
+      link.download = "بطاقة تهنئة.png";
       link.href = canvas.toDataURL("image/png");
       link.click();
       document.getElementById("downloadMsg").textContent = "✅ تم تحميل الصورة!";
