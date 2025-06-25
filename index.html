@@ -29,15 +29,19 @@
     }
 
     .name-box {
-      position: absolute;
-      bottom: 195px;
-      right: 125px;
-      background-color: rgba(94, 65, 47, 0.8); /* بني */
-      color: white;
-      padding: 10px 20px;
-      border-radius: 10px;
-      font-size: 15px;
-    }
+  position: absolute;
+  bottom: 195px;
+  right: 50%;
+  transform: translateX(50%);
+  background-color: rgba(94, 65, 47, 0.8); /* بني */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 15px;
+  white-space: nowrap;
+  direction: rtl;
+  text-align: center;
+}
 
     input, button {
       margin-top: 15px;
@@ -76,7 +80,7 @@
 
 <div class="card" id="card">
   <img src="pic2.png" alt="بطاقة تهنئة">
-  <div class="name-box" id="nameDisplay">أخوكم حسن تميم</div>
+  <div class="name-box" id="nameDisplay">اكتب اسمك هنا  </div>
 </div>
 
 <br>
@@ -97,7 +101,7 @@
   }
 
   function updateNameDisplay(name) {
-    document.getElementById("nameDisplay").textContent = name || "أخوكم حسن تميم";
+    document.getElementById("nameDisplay").textContent = name || "اكتب اسم هنا  ";
   }
 
   function updateName() {
